@@ -9,15 +9,14 @@ namespace RedApron
 {
     public sealed class Plugin : IDalamudPlugin
     {
-        public string Name => "Sample Plugin";
-        private const string CommandName = "/pmycommand";
+        public string Name => "Red Apron";
+        private const string CommandName = "/papron";
 
         private DalamudPluginInterface PluginInterface { get; init; }
         private CommandManager CommandManager { get; init; }
         public Configuration Configuration { get; init; }
         public WindowSystem WindowSystem = new("RedApron");
 
-        private ConfigWindow ConfigWindow { get; init; }
         private MainWindow MainWindow { get; init; }
 
         public Plugin(
@@ -31,18 +30,13 @@ namespace RedApron
             this.Configuration.Initialize(this.PluginInterface);
 
             // you might normally want to embed resources and load them from the manifest stream
-            var imagePath = Path.Combine(PluginInterface.AssemblyLocation.Directory?.FullName!, "goat.png");
-            var goatImage = this.PluginInterface.UiBuilder.LoadImage(imagePath);
-
-            ConfigWindow = new ConfigWindow(this);
-            MainWindow = new MainWindow(this, goatImage);
+            MainWindow = new MainWindow(this);
             
-            WindowSystem.AddWindow(ConfigWindow);
             WindowSystem.AddWindow(MainWindow);
 
             this.CommandManager.AddHandler(CommandName, new CommandInfo(OnCommand)
             {
-                HelpMessage = "A useful message to display in /xlhelp"
+                HelpMessage = "/papron"
             });
 
             this.PluginInterface.UiBuilder.Draw += DrawUI;
@@ -52,8 +46,7 @@ namespace RedApron
         public void Dispose()
         {
             this.WindowSystem.RemoveAllWindows();
-            
-            ConfigWindow.Dispose();
+
             MainWindow.Dispose();
             
             this.CommandManager.RemoveHandler(CommandName);
@@ -72,7 +65,6 @@ namespace RedApron
 
         public void DrawConfigUI()
         {
-            ConfigWindow.IsOpen = true;
         }
     }
 }

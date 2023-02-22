@@ -1,8 +1,8 @@
 {
   "Author": "Ais",
   "Name": "Red Apron",
-  "Punchline": "A short one-liner that shows up in /xlplugins.",
-  "Description": "A description that shows up in /xlplugins. List any major slash-command(s).",
+  "Punchline": "PvP statistics plugin.",
+  "Description": "A plugin for tracking PvP statistics beyond the overall scoreboard. /papron",
   "InternalName": "redApron",
   "ApplicableVersion": "any",
   "Tags": [
