@@ -2,7 +2,7 @@
   "Author": "Ais",
   "Name": "Red Apron",
   "Punchline": "PvP statistics plugin.",
-  "Description": "A plugin for tracking PvP statistics beyond the overall scoreboard. /papron",
+  "Description": "A plugin for tracking PvP statistics beyond the overall scoreboard. /redapron",
   "InternalName": "redApron",
   "ApplicableVersion": "any",
   "Tags": [

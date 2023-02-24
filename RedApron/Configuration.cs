@@ -1,4 +1,4 @@
-﻿using Dalamud.Configuration;
+using Dalamud.Configuration;
 using Dalamud.Plugin;
 using System;
 
@@ -12,14 +12,14 @@ namespace RedApron
         public bool SomePropertyToBeSavedAndWithADefault { get; set; } = true;
 
         // the below exist just to make saving less cumbersome
-        [NonSerialized]
-        private DalamudPluginInterface? PluginInterface;
+        [NonSerialized] private DalamudPluginInterface PluginInterface = null!;
 
-        public void Initialize(DalamudPluginInterface pluginInterface)
+        public static Configuration Get(DalamudPluginInterface pluginInterface)
         {
-            this.PluginInterface = pluginInterface;
+            var config = pluginInterface.GetPluginConfig() as Configuration ?? new Configuration();
+            config.PluginInterface = pluginInterface;
+            return config;
         }
-
         public void Save()
         {
             this.PluginInterface!.SavePluginConfig(this);
